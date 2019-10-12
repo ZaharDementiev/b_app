@@ -16,10 +16,16 @@ namespace WindowsFormsApp1.Pages
         Point lastPoint;
         List<string[]> list = new List<string[]>();
         List<string> location = new List<string>();
+        List<string> eqType = new List<string>();
 
         public EquipmentInfo()
         {
             InitializeComponent();
+            dataTable.Visible = false;
+
+            checkedList.Visible = false;
+            button1.Visible = false;
+            newLoc.Visible = false;
             dataTable.Visible = false;
         }
 
@@ -79,6 +85,7 @@ namespace WindowsFormsApp1.Pages
                 list[list.Count - 1][1] = reader[1].ToString();
                 list[list.Count - 1][2] = reader[2].ToString();
                 list[list.Count - 1][3] = reader[3].ToString();
+                eqType.Add(reader[3].ToString());
                 list[list.Count - 1][4] = reader[4].ToString();
                 location.Add(reader[4].ToString());
                 list[list.Count - 1][5] = reader[5].ToString();
@@ -91,14 +98,68 @@ namespace WindowsFormsApp1.Pages
         private void showButton_Click(object sender, EventArgs e)
         {
             dataTable.Visible = true;
+            checkedList.Visible = false;
+            button1.Visible = false;
+            newLoc.Visible = false;
 
             dataTable.Rows.Clear();
             WriteEquipmentLists();
-                foreach (string[] s in list)
-                    dataTable.Rows.Add(s);
+
+            foreach (string[] s in list)
+                dataTable.Rows.Add(s);
 
             list.Clear();
             location.Clear();
+            eqType.Clear();
+        }
+
+        private void moveButton_Click(object sender, EventArgs e)
+        {
+            dataTable.Visible = false;
+            checkedList.Visible = true;
+            button1.Visible = true;
+            newLoc.Visible = true;
+
+            checkedList.Items.Clear();
+            WriteEquipmentLists();
+
+            foreach (string s in location)
+                checkedList.Items.Add(s);
+
+            list.Clear();
+            location.Clear();
+            eqType.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WriteEquipmentLists();
+            DB db = new DB();
+            MySqlCommand command = new MySqlCommand("INSERT INTO `location_changes` (`old_location`, `actual_location`, `eq_name`) " +
+                "VALUES (@oL, @aL, @eN);", db.GetConnection());
+
+            command.Parameters.Add("@oL", MySqlDbType.VarChar).Value = location[checkedList.SelectedIndex];
+            command.Parameters.Add("@aL", MySqlDbType.VarChar).Value = newLoc.Text;
+            command.Parameters.Add("@eN", MySqlDbType.VarChar).Value = eqType[checkedList.SelectedIndex];
+
+            db.OpenConnection();  //Открытие базы данных
+
+            if (command.ExecuteNonQuery() == 1)
+                MessageBox.Show("Товар перемещен");
+            else
+                MessageBox.Show("Товар не перемещен");
+
+            db.CloseConnection(); //Закрытие базы данных            
+            
+            list.Clear();
+            location.Clear();
+            eqType.Clear();
+        }
+
+        private void checkedList_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            for (int ix = 0; ix < checkedList.Items.Count; ++ix)
+                if (ix != e.Index) checkedList.SetItemChecked(ix, false);
         }
     }
 }

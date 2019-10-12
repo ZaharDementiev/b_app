@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1.Pages
 {
-    partial class MovementHistory
+    partial class MovementHistoryForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,17 +31,17 @@
             this.mainLabel = new System.Windows.Forms.Label();
             this.goReg = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.close_label = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.showButton = new System.Windows.Forms.Button();
+            this.dataGrid = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.showButton = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.close_label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLabel
@@ -54,7 +54,6 @@
             this.mainLabel.Name = "mainLabel";
             this.mainLabel.Size = new System.Drawing.Size(800, 122);
             this.mainLabel.TabIndex = 0;
-            this.mainLabel.Text = "История перевозок";
             this.mainLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // goReg
@@ -66,12 +65,13 @@
             this.goReg.Size = new System.Drawing.Size(50, 16);
             this.goReg.TabIndex = 17;
             this.goReg.Text = "Назад";
+            this.goReg.Click += new System.EventHandler(this.goReg_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel1.Controls.Add(this.showButton);
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dataGrid);
             this.panel1.Controls.Add(this.goReg);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -79,6 +79,50 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 3;
+            // 
+            // showButton
+            // 
+            this.showButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.showButton.Location = new System.Drawing.Point(302, 346);
+            this.showButton.Name = "showButton";
+            this.showButton.Size = new System.Drawing.Size(192, 63);
+            this.showButton.TabIndex = 20;
+            this.showButton.Text = "Показать историю";
+            this.showButton.UseVisualStyleBackColor = true;
+            this.showButton.Click += new System.EventHandler(this.showButton_Click);
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.dataGrid.Location = new System.Drawing.Point(172, 128);
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.Size = new System.Drawing.Size(472, 200);
+            this.dataGrid.TabIndex = 18;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "id";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Название";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Старое_место";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Новое_место";
+            this.Column4.Name = "Column4";
             // 
             // panel2
             // 
@@ -103,63 +147,24 @@
             this.close_label.TabIndex = 1;
             this.close_label.Text = "X";
             this.close_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.close_label.Click += new System.EventHandler(this.CloseLabelClick);
+            this.close_label.MouseEnter += new System.EventHandler(this.Close_Label_MouseEnter);
+            this.close_label.MouseLeave += new System.EventHandler(this.Close_Label_MouseLeave);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(172, 128);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(448, 200);
-            this.dataGridView1.TabIndex = 18;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "id";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Название";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Старое_место";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Новое_место";
-            this.Column4.Name = "Column4";
-            // 
-            // showButton
-            // 
-            this.showButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.showButton.Location = new System.Drawing.Point(302, 346);
-            this.showButton.Name = "showButton";
-            this.showButton.Size = new System.Drawing.Size(192, 63);
-            this.showButton.TabIndex = 20;
-            this.showButton.Text = "Показать историю";
-            this.showButton.UseVisualStyleBackColor = true;
-            // 
-            // MovementHistory
+            // MovementHistoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Name = "MovementHistory";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "MovementHistoryForm";
             this.Text = "MovementHistory";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,7 +176,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label close_label;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

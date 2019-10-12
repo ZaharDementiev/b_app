@@ -41,6 +41,10 @@
             this.goReg = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.close_label = new System.Windows.Forms.Label();
+            this.moveButton = new System.Windows.Forms.Button();
+            this.checkedList = new System.Windows.Forms.CheckedListBox();
+            this.newLoc = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             this.panel2.SuspendLayout();
@@ -64,6 +68,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.newLoc);
+            this.panel1.Controls.Add(this.checkedList);
+            this.panel1.Controls.Add(this.moveButton);
             this.panel1.Controls.Add(this.dataTable);
             this.panel1.Controls.Add(this.showButton);
             this.panel1.Controls.Add(this.goReg);
@@ -124,7 +132,7 @@
             // showButton
             // 
             this.showButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.showButton.Location = new System.Drawing.Point(280, 359);
+            this.showButton.Location = new System.Drawing.Point(151, 354);
             this.showButton.Name = "showButton";
             this.showButton.Size = new System.Drawing.Size(192, 63);
             this.showButton.TabIndex = 19;
@@ -170,6 +178,43 @@
             this.close_label.MouseEnter += new System.EventHandler(this.Close_Label_MouseEnter);
             this.close_label.MouseLeave += new System.EventHandler(this.Close_Label_MouseLeave);
             // 
+            // moveButton
+            // 
+            this.moveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.moveButton.Location = new System.Drawing.Point(457, 354);
+            this.moveButton.Name = "moveButton";
+            this.moveButton.Size = new System.Drawing.Size(192, 63);
+            this.moveButton.TabIndex = 21;
+            this.moveButton.Text = "Переместить оборудование";
+            this.moveButton.UseVisualStyleBackColor = true;
+            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
+            // 
+            // checkedList
+            // 
+            this.checkedList.FormattingEnabled = true;
+            this.checkedList.Location = new System.Drawing.Point(151, 173);
+            this.checkedList.Name = "checkedList";
+            this.checkedList.Size = new System.Drawing.Size(192, 124);
+            this.checkedList.TabIndex = 22;
+            this.checkedList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedList_ItemCheck);
+            // 
+            // newLoc
+            // 
+            this.newLoc.Location = new System.Drawing.Point(392, 212);
+            this.newLoc.Name = "newLoc";
+            this.newLoc.Size = new System.Drawing.Size(199, 20);
+            this.newLoc.TabIndex = 23;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(392, 258);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(199, 39);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Переместить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // EquipmentInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,5 +248,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.Button moveButton;
+        private System.Windows.Forms.CheckedListBox checkedList;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox newLoc;
     }
 }

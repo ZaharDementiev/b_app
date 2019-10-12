@@ -10,11 +10,11 @@ namespace WindowsFormsApp1.Directory
 {
     class Equipment
     {
-        public string supplier { get; set; }
-        public string producer { get; set; }
-        public string equipmentType { get; set; }
-        public string location { get; set; }
-        public string tradingEquipment { get; set; }
+        private string supplier;
+        private string producer;
+        private string equipmentType;
+        private string location;
+        private string tradingEquipment;
 
         public Equipment(string supplier, string producer, string equipmentType, string location, string tradingEquipment)
         {
